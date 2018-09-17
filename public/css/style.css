@@ -1,0 +1,107 @@
+#container {
+    margin-top: 60px;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.navbar-brand {
+    color: red!important;
+    font-size: 1.5em!important;
+}
+#head-articles {
+    display: block;
+
+    width: 100%;
+    height: calc(100vh - 60px);
+}
+.titre-article
+{
+    color: white;
+    font-size: 2em;
+    align-self: flex-end;
+    position: relative;
+    margin-top: auto;
+    padding: 6rem;
+    width: 100%;
+    z-index: 2;
+}
+
+#first-article:hover .overlay{
+    opacity: 0.1;
+}
+#second-article:hover .overlay{
+    opacity: 0.1;
+}
+#third-article:hover .overlay{
+    opacity: 0.1;
+}
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: black;
+    opacity: .4;
+}
+#first-article {
+    width: 55%;
+    height: calc(100vh - 60px);
+    background-image: url("/img/foot.jpg");
+    background-size: cover;
+    display: flex;
+    float: left;
+    position: relative;
+    overflow: hidden;
+    border-right: 0.1rem solid white;
+    box-sizing: border-box;
+}
+#second-article {
+    width: 45%;
+    height: calc(50vh - 30px);
+    background-image: url("/img/foot1.jpg");
+    background-size: cover;
+    box-sizing: border-box;
+    display: flex;
+    float: left;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 0.1rem solid white;
+}
+#third-article {
+    width: 45%;
+    height: calc(50vh - 30px);
+    background-image: url("/img/f1.jpg");
+    background-size: cover;
+    display: flex;
+    float: left;
+    position: relative;
+    overflow: hidden;
+}
+
+
+#titre {
+    color : red;
+}
+
+a:visited {
+    all:unset;
+}
+
+nav
+{
+    background-color: #160821;
+    background-image: linear-gradient(62deg, #124599 0%, #0e2a59 100%);
+    position: fixed!important;
+    z-index: 1;
+    width: 100%;
+    top: 0;
+}
+
+
+body
+{background-color:white;
+max-width: 100%;}

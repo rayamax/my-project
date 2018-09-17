@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+
+    <div id="head-articles">
+        <a href="{{ path('article_show') }}">
+            <div id="first-article">
+                <div class="overlay"></div>
+                <div class="titre-article">
+                    <h3>
+                        Ligue des champions
+                    </h3>
+                    <h4>
+
+                    </h4>
+                    <p>
+                        Paris débute sa campagne européenne
+                    </p>
+                </div>
+            </div>
+        </a>
+        <div id="second-article">
+            <div class="overlay"></div>
+            <div class="titre-article">
+                <h3>
+                    Ligue 1
+                </h3>
+                <p>
+                    L'OM peut compter sur Thauvin
+                </p>
+            </div>
+        </div>
+        <div id="third-article">
+            <div class="overlay"></div>
+            <div class="titre-article">
+                <h3>F1</h3>
+                Le titre est il joué ?
+            </div>
+        </div>
+
+
+    </div>
+    <div id="list-article">
+        <ul>
+            {% for article in articles %}
+                <li>{{ article.title }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
