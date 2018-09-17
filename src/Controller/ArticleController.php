@@ -26,6 +26,13 @@ class ArticleController extends AbstractController
     }
 
     /**
+     * @Route("/article/new", name="article_create")
+     */
+    public function createArticle(){
+        return $this->render('article/create.html.twig');
+    }
+
+    /**
      * @Route("/article/{id}", name="article_show")
      */
     public function show($id){
@@ -37,11 +44,6 @@ class ArticleController extends AbstractController
             'article' =>$article
         ]);
     }
-    /**
-     * @
-     */
-    public function createArticle(){
-        return $this->render
-    }
+
 
 }
