@@ -24,7 +24,7 @@ class Article
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $competition;
+    private $resume;
 
     /**
      * @ORM\Column(type="text")
@@ -34,22 +34,17 @@ class Article
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $date;
+    private $image;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $image;
+    private $competition;
 
     /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $resume;
 
     public function getId(): ?int
     {
@@ -68,14 +63,14 @@ class Article
         return $this;
     }
 
-    public function getCompetition(): ?string
+    public function getResume(): ?string
     {
-        return $this->competition;
+        return $this->resume;
     }
 
-    public function setCompetition(string $competition): self
+    public function setResume(string $resume): self
     {
-        $this->competition = $competition;
+        $this->resume = $resume;
 
         return $this;
     }
@@ -92,18 +87,6 @@ class Article
         return $this;
     }
 
-    public function getDate(): ?string
-    {
-        return $this->date;
-    }
-
-    public function setDate(string $date): self
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
     public function getImage(): ?string
     {
         return $this->image;
@@ -116,6 +99,18 @@ class Article
         return $this;
     }
 
+    public function getCompetition(): ?string
+    {
+        return $this->competition;
+    }
+
+    public function setCompetition(string $competition): self
+    {
+        $this->competition = $competition;
+
+        return $this;
+    }
+
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
@@ -124,18 +119,6 @@ class Article
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getResume(): ?string
-    {
-        return $this->resume;
-    }
-
-    public function setResume(string $resume): self
-    {
-        $this->resume = $resume;
 
         return $this;
     }
