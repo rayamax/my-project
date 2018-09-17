@@ -2,19 +2,14 @@
 {% block body %}
     <article>
         <h2>
-            Bonjour
+            {{ article.title }}
         </h2>
         <div class="metadata">
-            Salut
+            Crée le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('h:i') }}
         </div>
         <div class="content">
-            <img src="{{ asset('img/foot1.jpg') }}">
-            <p>
-                Youhou
-            </p>
-            <p>
-                Yipi
-            </p>
+            <img src="{{ article.image }}">
+                {{ article.content | raw}}
             <hr>
         </div>
     </article>

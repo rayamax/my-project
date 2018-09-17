@@ -5,7 +5,7 @@
 {% block body %}
 
     <div id="head-articles">
-        <a href="{{ path('article_show') }}">
+        <a href="">
             <div id="first-article">
                 <div class="overlay"></div>
                 <div class="titre-article">
@@ -39,15 +39,27 @@
                 Le titre est il joué ?
             </div>
         </div>
-
-
     </div>
     <div id="list-article">
-        <ul>
             {% for article in articles %}
-                <li>{{ article.title }}</li>
+                <article>
+                    <h3>
+                        {{ article.title }}
+                    </h3>
+                    <div class="metadata">
+                        Ecrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i') }}
+                    </div>
+                    <div class="content">
+                        <img src="{{ article.image }}">
+                        <p>
+                            {{ article.resume }}
+                        </p>
+                        <a href="{{ path('article_show', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
+                    </div>
+
+                </article>
+
             {% endfor %}
-        </ul>
     </div>
 
 {% endblock %}

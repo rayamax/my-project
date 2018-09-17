@@ -96,7 +96,7 @@ nav
     background-color: #160821;
     background-image: linear-gradient(62deg, #124599 0%, #0e2a59 100%);
     position: fixed!important;
-    z-index: 1;
+    z-index: 1000;
     width: 100%;
     top: 0;
 }
