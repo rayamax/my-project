@@ -13,4 +13,18 @@
             <hr>
         </div>
     </article>
+    <section id="commentaires">
+        {% for comment in article.comments %}
+        <div class="comment">
+            <div id="row">
+                <div class="col-3">
+                    {{ comment.author }} (<small>{{ comment.createdAt | date('d/m/Y à H:i') }}</small>)
+                </div>
+                <div id="col">
+                    {{ comment.content | raw }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
 {% endblock %}

@@ -2,10 +2,11 @@
 
 namespace App\Form;
 
-use App\Entity\Article;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Article;
 
 class ArticleType extends AbstractType
 {
@@ -16,7 +17,10 @@ class ArticleType extends AbstractType
             ->add('resume')
             ->add('content')
             ->add('image')
-            ->add('competition')
+            ->add('competition', EntityType::class,[
+                'class' => Article::class,
+                'choice_label'=>'competition'
+            ])
         ;
     }
 
