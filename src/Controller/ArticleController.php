@@ -28,37 +28,6 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/article/new", name="article_create")
-     * @Route("/article/{id}/edit", name="article_edit")
-     */
-    public function form(Article $article = null, Request $request, ObjectManager $manager){
-
-        if (!$article){
-            $article = new Article();
-        }
-
-        $form = $this->createForm(ArticleType::class, $article);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()){
-            if (!$article->getId()){
-                $article->setCreatedAt(new \DateTime());
-            }
-
-            $manager->persist($article);
-            $manager->flush();
-
-            return $this->redirectToRoute('article_show',['id' => $article->getId()]);
-        }
-
-
-        return $this->render('article/create.html.twig', [
-            'form' =>$form->createView(),
-            'editMode' => $article->getId() !== null
-        ]);
-    }
 
     /**
      * @Route("/article/{id}", name="article_show")

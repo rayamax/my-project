@@ -17,10 +17,7 @@ class ArticleType extends AbstractType
             ->add('resume')
             ->add('content')
             ->add('image')
-            ->add('competition', EntityType::class,[
-                'class' => Article::class,
-                'choice_label'=>'competition'
-            ])
+            ->add('competition')
         ;
     }
 
