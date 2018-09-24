@@ -50,7 +50,7 @@
 #first-article {
     width: 55%;
     height: calc(100vh - 60px);
-    background-image: url("/img/foot.jpg");
+    background-image: url("../img/foot.jpg");
     background-size: cover;
     display: flex;
     float: left;
@@ -62,7 +62,7 @@
 #second-article {
     width: 45%;
     height: calc(50vh - 30px);
-    background-image: url("/img/foot1.jpg");
+    background-image: url("../img/foot1.jpg");
     background-size: cover;
     box-sizing: border-box;
     display: flex;
@@ -74,7 +74,7 @@
 #third-article {
     width: 45%;
     height: calc(50vh - 30px);
-    background-image: url("/img/f1.jpg");
+    background-image: url("../img/f1.jpg");
     background-size: cover;
     display: flex;
     float: left;
