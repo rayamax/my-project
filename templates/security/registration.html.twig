@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+
+
+    <h1>
+        Inscription sur le site
+    </h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.confirm_email) }}
+    {{ form_row(form.password) }}
+    {{ form_row(form.confirm_password) }}
+
+    <button class="btn btn-success">
+        Inscription
+    </button>
+    {{ form_end(form) }}
+
+{% endblock %}
