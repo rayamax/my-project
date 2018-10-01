@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use Doctrine\Common\Persistence\ObjectManager;
+use http\Env\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,6 +17,13 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class AdminArticleController extends AbstractController
 {
+    /**
+     * @Route("/", name="admin_access")
+     */
+    public function admin(){
+        return $this->render('/admin/article/index.html.twig');
+    }
+
     /**
      * @Route("/article/index", name="app_admin_article_index")
      */

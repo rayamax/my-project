@@ -36,9 +36,10 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
-     * @Assert\Length(min="8",minMessage="Votre mdp doit faire 8 caractere min")
+     * @Assert\EqualTo(propertyPath="confirm_password")
      */
     private $password;
+    public  $confirm_password;
 
     /**
      * @ORM\Column(type="string", length=255)

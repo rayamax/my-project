@@ -9,11 +9,14 @@
 
     {{ form_start(form) }}
     {{ form_row(form.email) }}
+    {{ form_row(form.pseudo) }}
     {{ form_row(form.password) }}
+    {{ form_row(form.confirm_password) }}
 
     <button class="btn btn-success">
         Inscription
     </button>
     {{ form_end(form) }}
+
 
 {% endblock %}

@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Article;
+use Symfony\Component\Security\Core\Security;
 
 class ArticleController extends AbstractController
 {
@@ -29,7 +30,20 @@ class ArticleController extends AbstractController
              'articles'=>$articles
         ]);
     }
+    /**
+     * @Route("/liste", name="list_articles")
+     */
+    public function liste(ArticleRepository $repo)
+    {
 
+        //dd($articles);
+
+        $articles = $repo->findAll();
+
+        return $this->render('article/liste.html.twig', [
+            'articles'=>$articles
+        ]);
+    }
 
     /**
      * @Route("/article/{id}", name="article_show")
@@ -38,10 +52,11 @@ class ArticleController extends AbstractController
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
+        $user = $this->getUser();
         if ($form->isSubmitted() && $form->isValid()){
             $comment->setCreatedAt(new \DateTime())
                     ->setArticle($article)
-                    ->setAuthor('a');
+                    ->setAuthor($user->getPseudo());
 
             $manager->persist($comment);
             $manager->flush();

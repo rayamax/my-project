@@ -12,6 +12,13 @@
                 {{ article.content | raw}}
             <hr>
         </div>
+        {% if app.user %}
+            {% if app.user.username == 'admin' %}
+                <a href="{{ path('app_admin_article_edit', {'id': article.id}) }}">
+                    <button class="btn btn-primary">Editer</button>
+                </a>
+            {% endif %}
+        {% endif %}
     </article>
     <section id="commentaires">
         <h2>
@@ -27,6 +34,19 @@
                     {{ comment.content | raw }}
                 </div>
             </div>
+            {% if app.user %}
+                {% if app.user.username == comment.author %}
+            <a href="">
+                <button class="btn btn-primary">Editer Commentaire</button>
+            </a>
+            <a href="">
+                <button class="btn btn-primary">Supprimer Commentaire</button>
+            </a> {% elseif app.user.username == 'admin' %}
+            <a href="">
+                <button class="btn btn-primary">Supprimer Commentaire</button>
+            </a>
+            {% endif %}
+            {% endif %}
         </div>
         {% endfor %}
 

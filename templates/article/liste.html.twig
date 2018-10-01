@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des articles{% endblock %}
+
+{% block body %}
+
+        {% for article in articles %}
+            <div class="article">
+            <a href="{{ path('article_show', {'id': article.id}) }}">
+<img src="{{ article.image }}">
+                        <h3>
+                            {{ article.competition }}
+                        </h3>
+                        <p>
+                            {{ article.title }}
+                        </p>
+                    {{ article.resume }}
+            </a></div>
+        {% endfor %}
+
+{% endblock %}

@@ -6,6 +6,15 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)
+        chain_provider:
+            chain:
+                providers: [in_memory, app_user_provider]
+        in_memory:
+                memory:
+                       users:
+                           admin:
+                               password: admin
+                               roles: 'ROLE_ADMIN'
         app_user_provider:
             entity:
                 class: App\Entity\User
@@ -15,7 +24,7 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: true
+            anonymous: ~
 
             provider: app_user_provider
 
@@ -42,5 +51,6 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }

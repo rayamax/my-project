@@ -9,9 +9,18 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
+
+    /**
+     * @Route("/compte", name="account_manager")
+     */
+    public function account(){
+        return $this->render('security/index.html.twig');
+    }
+
     /**
      * @Route("/inscription", name="security_registration")
      */
@@ -41,8 +50,14 @@ class SecurityController extends AbstractController
      * @Route("/connexion",name="security_login")
      */
 
-    public function login() {
-        return $this->render('security/login.html.twig');
+    public function login(AuthenticationUtils $authenticationUtils) {
+
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
+        return $this->render('security/login.html.twig', array(
+            'last_username' => $lastUsername,
+            'error'         => $error,
+        ));
     }
     /**
      * @Route("/deconnexion", name="security_logout")
