@@ -3,7 +3,7 @@
 {% block body %}
 
 <h1>
-    Connecté !
+    Espace membre
 </h1>
     <form action="{{ path('security_login') }}" method="post">
         <div class="form-group">
@@ -15,6 +15,7 @@
         <div class="form-group">
             <button type="submit" class="btn btn-success">Connexion</button>
         </div>
-
     </form>
+
+    <a href="{{ path('security_registration') }}">Pas de compte créé ? Inscris toi ici ! </a>
 {% endblock %}
