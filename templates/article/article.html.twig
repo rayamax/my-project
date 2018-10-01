@@ -34,6 +34,7 @@
                     {{ comment.content | raw }}
                 </div>
             </div>
+            {{ dump(app.user,comment)}}
             {% if app.user %}
                 {% if app.user.username == comment.author %}
             <a href="">
