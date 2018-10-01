@@ -5,22 +5,16 @@
 {% block body %}
 
     <h1>
-        {% if editMode %}
-            Modifier
-        {% else %}
+
             Nouvel article
-        {% endif %}
+
     </h1>
     {{ form_start(form) }}
 
     {{ form_widget(form) }}
 
     <button type="submit" class="btn btn-success">
-        {% if editMode %}
-        Enregistrer
-        {% else %}
         Ajouter l'article
-        {% endif %}
     </button>
 
     {{ form_end(form) }}

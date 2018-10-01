@@ -60,7 +60,7 @@
     box-sizing: border-box;
 }
 #second-article {
-    width: 45%;
+    width: 50%;
     height: calc(50vh - 30px);
     background-image: url("../img/foot1.jpg");
     background-size: cover;
@@ -69,7 +69,7 @@
     float: left;
     position: relative;
     overflow: hidden;
-    border-bottom: 0.1rem solid white;
+    border: 0.1rem solid white;
 }
 #third-article {
     width: 45%;
