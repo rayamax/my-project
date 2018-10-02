@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use App\Entity\Comment;
+use App\Entity\User;
 use App\Form\ArticleType;
 use App\Form\CommentType;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -56,7 +57,8 @@ class ArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             $comment->setCreatedAt(new \DateTime())
                     ->setArticle($article)
-                    ->setAuthor($user->getPseudo());
+                    ->setAuthor($user->getPseudo())
+                    ->setUser($user);
 
             $manager->persist($comment);
             $manager->flush();
@@ -70,5 +72,4 @@ class ArticleController extends AbstractController
             'commentForm' => $form->createView()
         ]);
     }
-
 }

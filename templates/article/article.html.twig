@@ -17,14 +17,19 @@
                 <a href="{{ path('app_admin_article_edit', {'id': article.id}) }}">
                     <button class="btn btn-primary">Editer</button>
                 </a>
+                <a href="{{ path('remo', {'id': article.id}) }}">
+                    <button class="btn btn-primary">Suprimmer</button>
+                </a>
             {% endif %}
         {% endif %}
     </article>
+
     <section id="commentaires">
         <h2>
            {{ article.comments | length }} commentaires :
         </h2>
         {% for comment in article.comments %}
+            {{ dump(app.user,comment)}}
         <div class="comment">
             <div id="row">
                 <div class="col-3">
@@ -34,9 +39,8 @@
                     {{ comment.content | raw }}
                 </div>
             </div>
-            {{ dump(app.user,comment)}}
             {% if app.user %}
-                {% if app.user.username == comment.author %}
+                {% if app.user.id == comment.user.id %}
             <a href="">
                 <button class="btn btn-primary">Editer Commentaire</button>
             </a>
