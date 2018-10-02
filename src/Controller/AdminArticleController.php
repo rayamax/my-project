@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManager;
 use http\Env\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -79,5 +80,13 @@ class AdminArticleController extends AbstractController
         return $this->render('admin/article/edit.html.twig', [
             'form' =>$form->createView(),
         ]);
+    }
+    /**
+     * @Route("/article/remove/{id}", name="app_admin_remove_article")
+     */
+    public function removeArticle(Article $article, ObjectManager $entityManager){
+        $entityManager->remove($article);
+        $entityManager->flush();
+        return $this->redirectToRoute('list_articles');
     }
 }

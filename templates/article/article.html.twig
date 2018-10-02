@@ -17,7 +17,7 @@
                 <a href="{{ path('app_admin_article_edit', {'id': article.id}) }}">
                     <button class="btn btn-primary">Editer</button>
                 </a>
-                <a href="{{ path('remo', {'id': article.id}) }}">
+                <a href="{{ path('app_admin_remove_article', {'id': article.id}) }}">
                     <button class="btn btn-primary">Suprimmer</button>
                 </a>
             {% endif %}
