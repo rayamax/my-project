@@ -22,9 +22,6 @@ class ArticleController extends AbstractController
      */
     public function index(ArticleRepository $repo)
     {
-
-        //dd($articles);
-
         $articles = $repo->findAll();
 
          return $this->render('article/index.html.twig', [
@@ -36,10 +33,7 @@ class ArticleController extends AbstractController
      */
     public function liste(ArticleRepository $repo)
     {
-
-        //dd($articles);
-
-        $articles = $repo->findAll();
+        $articles = $repo->findAllOrderByNewest();
 
         return $this->render('article/liste.html.twig', [
             'articles'=>$articles

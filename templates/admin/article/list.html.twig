@@ -3,19 +3,20 @@
 {% block title %}Liste des articles{% endblock %}
 
 {% block body %}
-<h1>Liste des articles</h1>
+    <h1>Liste des articles</h1>
     <table class="table">
         <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">Titre</th>
-                <th scope="col">Compétition</th>
-                <th scope="col">Résumé</th>
-            </tr>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Titre</th>
+            <th scope="col">Compétition</th>
+            <th scope="col">Résumé</th>
+            <th scope="col">Editer</th>
+            <th scope="col">Supprimer</th>
+        </tr>
         </thead>
         <tbody>
         {% for article in articles %}
-
             <tr>
                 <th scope="col"><img src="{{ article.image }}" class="img-list"></th>
                 <th scope="col"><a href="{{ path('article_show', {'id': article.id}) }}">
@@ -29,6 +30,14 @@
                 <th scope="col"><p>
                         {{ article.resume }}
                     </p></th>
+                <th scope="col"><a href="{{ path('app_admin_article_edit', {'id': article.id}) }}">
+                        <button class="btn btn-primary">Editer</button>
+                    </a>
+                    </th>
+                <th scope="col"><a href="{{ path('app_admin_remove_article', {'id': article.id}) }}">
+                        <button class="btn btn-primary">Suprimmer</button>
+                    </a>
+                </th>
             </tr>
         {% endfor %}
         </tbody>

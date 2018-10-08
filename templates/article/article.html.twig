@@ -4,11 +4,14 @@
         <h2>
             {{ article.title }}
         </h2>
+        <hr>
         <div class="metadata">
             Crée le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('h:i') }}
         </div>
+        <hr>
         <div class="content">
             <img src="{{ article.image }}">
+            <hr>
                 {{ article.content | raw}}
             <hr>
         </div>
@@ -29,25 +32,21 @@
            {{ article.comments | length }} commentaires :
         </h2>
         {% for comment in article.comments %}
-            {{ dump(app.user,comment)}}
         <div class="comment">
             <div id="row">
                 <div class="col-3">
                     {{ comment.author }} (<small>{{ comment.createdAt | date('d/m/Y à H:i') }}</small>)
                 </div>
                 <div id="col">
-                    {{ comment.content | raw }}
+                    <p>{{ comment.content | raw }}</p>
                 </div>
             </div>
             {% if app.user %}
                 {% if app.user.id == comment.user.id %}
-            <a href="">
-                <button class="btn btn-primary">Editer Commentaire</button>
-            </a>
-            <a href="">
+            <a href="{{ path('app_admin_remove_comment', {'id': comment.id}) }}">
                 <button class="btn btn-primary">Supprimer Commentaire</button>
             </a> {% elseif app.user.username == 'admin' %}
-            <a href="">
+            <a href="{{ path('app_admin_remove_comment', {'id': comment.id}) }}">
                 <button class="btn btn-primary">Supprimer Commentaire</button>
             </a>
             {% endif %}

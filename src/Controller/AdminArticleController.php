@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Comment;
 use App\Form\ArticleType;
+use App\Repository\ArticleRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManager;
 use http\Env\Response;
@@ -88,5 +90,27 @@ class AdminArticleController extends AbstractController
         $entityManager->remove($article);
         $entityManager->flush();
         return $this->redirectToRoute('list_articles');
+    }
+    /**
+     * @Route("/article/removeComment/{id}", name="app_admin_remove_comment")
+     */
+    public function removeComment(Comment $comment, ObjectManager $entityManager){
+        $entityManager->remove($comment);
+        $entityManager->flush();
+        return $this->redirectToRoute('list_articles');
+    }
+    /**
+     * @Route("/liste", name="app_admin_list_articles")
+     */
+    public function liste(ArticleRepository $repo)
+    {
+
+        //dd($articles);
+
+        $articles = $repo->findAll();
+
+        return $this->render('admin/article/list.html.twig', [
+            'articles'=>$articles
+        ]);
     }
 }
