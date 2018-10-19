@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+    <div id="article-container">
     <article>
         <h2>
             {{ article.title }}
@@ -26,6 +27,34 @@
             {% endif %}
         {% endif %}
     </article>
+    <table id="standings">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Titre</th>
+                <th scope="col">Compétition</th>
+                <th scope="col">Résumé</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"><a href="">
+                        <h3>
+
+                        </h3>
+                    </a></th>
+                <th scope="col"><p>
+
+                    </p></th>
+                <th scope="col"><p>
+
+                    </p></th>
+            </tr>
+        </tbody>
+    </table>
+    </div>
 
     <section id="commentaires">
         <h2>

@@ -1,0 +1,21 @@
+var header = document.querySelector('header');
+var requestURL = "https://www.thesportsdb.com/api/v1/json/1/lookuptable.php?l=4334";
+var request = new XMLHttpRequest();
+request.open('GET', requestURL);
+request.responseType = 'json';
+request.send();
+request.onload = function() {
+    var standings = request.response;
+    showStandings(standings);
+}
+
+function showStandings(jsonObj){
+    var classement = jsonObj['teams'];
+
+    for (var i = 0; i < classement.length ; i++){
+        var myH2 = document.createElement('h2');
+
+        myH2.textContent = table[i].name;
+    }
+
+}

@@ -124,3 +124,7 @@ nav
 body
 {background-color:white;
 max-width: 100%;}
+#article-container {
+    display: flex;
+    flex-direction: row;
+}
