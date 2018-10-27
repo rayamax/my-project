@@ -1,21 +1,32 @@
-var header = document.querySelector('header');
-var requestURL = "https://www.thesportsdb.com/api/v1/json/1/lookuptable.php?l=4334";
-var request = new XMLHttpRequest();
-request.open('GET', requestURL);
-request.responseType = 'json';
-request.send();
-request.onload = function() {
-    var standings = request.response;
-    showStandings(standings);
+function createNode(element) {
+    return document.createElement(element);
 }
 
-function showStandings(jsonObj){
-    var classement = jsonObj['teams'];
-
-    for (var i = 0; i < classement.length ; i++){
-        var myH2 = document.createElement('h2');
-
-        myH2.textContent = table[i].name;
-    }
-
+function append(parent, el) {
+    return parent.appendChild(el);
 }
+const table = document.getElementById('standing');
+const url = "https://www.thesportsdb.com/api/v1/json/1/lookuptable.php?l=4334&s=1819";
+fetch(url)
+.then((resp)=>resp.json())
+.then(function(data) {
+    let teams = data.table;
+    let stand = 0;
+    return teams.map(function(team){
+        let tr = createNode('tr'),
+            th1 = createNode('th'),
+            th2 = createNode('th'),
+            th3 = createNode('th');
+        stand++;
+        th1.innerHTML = `${stand}`;
+        th2.innerHTML = `${team.name}`;
+        th3.innerHTML = `${team.total}`;
+        append(table, tr);
+        append(tr, th1);
+        append(tr, th2);
+        append(tr, th3);
+    })
+})
+    .catch(function(error) {
+        console.log(error);
+    });

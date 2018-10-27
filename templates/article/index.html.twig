@@ -3,23 +3,53 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-
+    <table id="index-standings">
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Equipe</th>
+            <th scope="col">Points</th>
+        </tr>
+        </thead>
+        <tbody id="standing">
+        </tbody>
+    </table>
     <div id="head-articles">
         {% for article in articles %}
-        <a href="{{ path('article_show', {'id': article.id}) }}">
-            <div id="second-article" style="background-image: url({{ article.image }})">
-                <div class="overlay"></div>
-                <div class="titre-article">
+
+            <div class="index-article" style="background-image: url({{ article.image }})">
+                <a href="{{ path('article_show', {'id': article.id}) }}">
+                    <div class="overlay"></div>
+
+                    <div class="titre-article">
                     <h3>
                         {{ article.competition }}
                     </h3>
                     <p>
                         {{ article.title }}
                     </p>
-                </div>
+                    </div>
+                </a>
             </div>
-        </a>
+
         {% endfor %}
     </div>
-
+    <table id="index-results">
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody id="standing">
+        </tbody>
+    </table>
 {% endblock %}
+    {% block javascripts %}
+        {{ parent() }}
+        <script src="{{ asset('js/standings') }}"></script>
+        <script src="{{ asset('js/indexresults.js') }}"></script>
+
+    {% endblock %}
+
