@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div id="team-container">
+        <article>
+            <h2>
+                {{ article.title }}
+            </h2>
+            <hr>
+            <div class="metadata">
+                Crée le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('h:i') }}
+            </div>
+            <hr>
+            <div class="content">
+                <img src="{{ article.image }}">
+                <hr>
+                {{ article.content | raw}}
+                <hr>
+            </div>
+            {% if app.user %}
+                {% if app.user.username == 'admin' %}
+                    <a href="{{ path('app_admin_article_edit', {'id': article.id}) }}">
+                        <button class="btn btn-primary">Editer</button>
+                    </a>
+                    <a href="{{ path('app_admin_remove_article', {'id': article.id}) }}">
+                        <button class="btn btn-primary">Suprimmer</button>
+                    </a>
+                {% endif %}
+            {% endif %}
+        </article>
+        <table id="standings">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Equipe</th>
+                <th scope="col">Points</th>
+            </tr>
+            </thead>
+            <tbody id="standing">
+            </tbody>
+        </table>
+    </div>
+
+    <section id="commentaires">
+        <h2>
+            {{ article.comments | length }} commentaires :
+        </h2>
+        {% for comment in article.comments %}
+            <div class="comment">
+                <div id="row">
+                    <div class="col-3">
+                        {{ comment.author }} (<small>{{ comment.createdAt | date('d/m/Y à H:i') }}</small>)
+                    </div>
+                    <div id="col">
+                        <p>{{ comment.content | raw }}</p>
+                    </div>
+                </div>
+                {% if app.user %}
+                    {% if app.user.id == comment.user.id %}
+                        <a href="{{ path('app_admin_remove_comment', {'id': comment.id}) }}">
+                            <button class="btn btn-primary">Supprimer Commentaire</button>
+                        </a> {% elseif app.user.username == 'admin' %}
+                        <a href="{{ path('app_admin_remove_comment', {'id': comment.id}) }}">
+                            <button class="btn btn-primary">Supprimer Commentaire</button>
+                        </a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        {% if app.user %}
+            {{ form_start(commentForm) }}
+            {{ form_row(commentForm.content, {'attr':{'placeholder':'Votre commentaire'}})}}
+            <button type="submit" class="btn btn-success">Commenter</button>
+            {{ form_end(commentForm) }}
+        {% else %}
+            <a href="{{ path('security_login') }}">
+                <button class="btn btn-primary">Connectez vous</button>
+            </a>
+
+        {% endif %}
+    </section>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/standings') }}"></script>
+{% endblock %}

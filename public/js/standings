@@ -19,7 +19,7 @@ fetch(url)
             th3 = createNode('th');
         stand++;
         th1.innerHTML = `${stand}`;
-        th2.innerHTML = `${team.name}`;
+        th2.innerHTML = `<a href="team&${team.teamid}">${team.name}</a>`;
         th3.innerHTML = `${team.total}`;
         append(table, tr);
         append(tr, th1);
